@@ -1,5 +1,18 @@
 {
+<<<<<<< Updated upstream
     "posts": [
       
+=======
+    "products": [
+      {
+        "id" : "1",
+        "name": "xuan quoc",
+        "status": "okeay",
+        "type": "lala",
+        "quantity": "1",
+        "brand": "koku",
+        "price": "1"
+      }
+>>>>>>> Stashed changes
     ]
   }

@@ -1,15 +1,15 @@
 import { ReactNode, memo } from "react";
+import './button.css'
 
 interface ButtonProps {
   children?: ReactNode;
   size?: "large" | "medium" | "small";
-  kind?: "primary" | "secondary" | "error";
+  kind?: "primary" | "outline" | "error";
   className?: string;
   type?: "submit" | "button";
   onClick: () => void;
 } 
 
-// import { Container } from './styles';
 
 const Common = ({ children, size, kind, className, onClick }: ButtonProps) => {
   return (
