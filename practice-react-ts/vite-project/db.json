@@ -1,8 +1,5 @@
 {
-<<<<<<< Updated upstream
-    "posts": [
-      
-=======
+
     "products": [
       {
         "id" : "1",
@@ -13,6 +10,5 @@
         "brand": "koku",
         "price": "1"
       }
->>>>>>> Stashed changes
     ]
   }

@@ -1,5 +1,4 @@
-<<<<<<< Updated upstream
-=======
+
 import { Columns } from "../../../types/columnsTtype";
 import {memo} from 'react'
 import { Product } from "../../../types/product";
@@ -46,4 +45,3 @@ interface TableProps {
 }
 
 export default memo(Table)
->>>>>>> Stashed changes
