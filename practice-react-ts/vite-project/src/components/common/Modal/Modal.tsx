@@ -1,36 +1,31 @@
-import React from 'react';
-import { Product } from '../../../types/product';
+import React from "react";
+import { Product } from "../../../types/product";
+import Button from "../Button/Button";
+import { AiOutlineClose } from "react-icons/ai";
+import "./modal.css";
 
 interface ModalProps {
-    onClose : () => void,
-    onSubmit: (formData: Product) => void;
-    children: React.ReactNode
-    product: Product;
+  onClose: () => void;
+  children: React.ReactNode;
+  title: string;
 }
-const Modal = ( { children} : ModalProps) => {
-    
 
-    const handleSubmit = () => {
-
-    }
-    return (
-        <div className='modal-custome'>
-            <div className='overlay'></div>
-            <div className='header'>Add product</div>
-            {children}
-            <div className='footer'>
-                <button onClick={handleSubmit }>
-
-                </button>
-
-                <button>
-
-                </button>
-            </div>
+const Modal = ({ title, onClose, children }: ModalProps) => {
+  return (
+    <div className="modal-custome">
+      <div className="overlay"></div>
+        <div className="modal-content">
+        <div className="header">
+            {title}
+            <Button className="btn-close" onClick={onClose} size="large"><AiOutlineClose/></Button>
         </div>
-    );
+        
+          
+        
+      </div>
+      {children}
+    </div>
+  );
 };
-
-
 
 export default Modal;

@@ -1,12 +1,14 @@
+
 import { Columns } from "../../../types/columnsTtype";
 import {memo} from 'react'
 import { Product } from "../../../types/product";
+import './index.css'
 
 interface TableProps {
   columns: Columns[];
   data: Product[];
-  hover: boolean;
-  stripped: boolean;
+  hover?: boolean;
+  stripped?: boolean;
 }
 
  function Table({

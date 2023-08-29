@@ -8,12 +8,12 @@ interface ProductContextType {
 
 type ProviderType = {
     products: Product[];
-    addAction: (newProduct: Product) => Promise<void>;
-    editAction: (editProduct: Product) => Promise<void>;
-    deleteAction: (idProduct: string) => Promise<void>;
+    addAction: (newProduct: Product) => void;
+    editAction: (editProduct: Product) => void;
+    deleteAction: (idProduct: string) => void;
 };
 
-const ProviderContext = createContext<ProviderType | null>(null);
+const ProviderContext = createContext<ProviderType| undefined>(undefined);
 
 export const useProviderContext = () => {
     const context = useContext(ProviderContext);
@@ -23,7 +23,7 @@ export const useProviderContext = () => {
     return context;
 };
 
-const ProductContext = ({ children }: ProductContextType) => {
+export const ProductContext = ({ children }: ProductContextType) => {
     const [products, setProducts] = useState<Product[]>([]);
 
     useEffect(() => {
@@ -82,4 +82,3 @@ const ProductContext = ({ children }: ProductContextType) => {
     return <ProviderContext.Provider value={providerValue}>{children}</ProviderContext.Provider>;
 };
 
-export default ProductContext;
