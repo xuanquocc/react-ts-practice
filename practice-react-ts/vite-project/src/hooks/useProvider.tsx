@@ -1,38 +1,85 @@
-import { useContext, createContext, useCallback } from "react";
+import React, { createContext, useContext, useCallback, useState, useEffect } from "react";
 import { Product } from "../types/product";
-import api from "../api/api";
-
+import { addProduct, updateProduct, deleteProduct, fetchProducts } from "../service/service";
 
 interface ProductContextType {
-    children: React.ReactNode
+    children: React.ReactNode;
 }
 
 type ProviderType = {
-    product: Product[];
-    addAction: (newProduct: Product) => void;
-    editAction: (editProduct: Product) => void;
-    deleteAction: (idProduct: Product) => void;
-}
- const ProviderContext = createContext<ProviderType | null>(null)
+    products: Product[];
+    addAction: (newProduct: Product) => Promise<void>;
+    editAction: (editProduct: Product) => Promise<void>;
+    deleteAction: (idProduct: string) => Promise<void>;
+};
+
+const ProviderContext = createContext<ProviderType | null>(null);
 
 export const useProviderContext = () => {
-    const context = useContext(ProviderContext)
-    return context
-}
-const ProductContext = ({children}: ProductContextType) => {
+    const context = useContext(ProviderContext);
+    if (!context) {
+        throw new Error("useProviderContext must be used within a Provider");
+    }
+    return context;
+};
 
-    const addAction = useCallback(async(newPoduct: Product) => {
-        try{
+const ProductContext = ({ children }: ProductContextType) => {
+    const [products, setProducts] = useState<Product[]>([]);
 
-        }catch(e) {
-            console.error(e);
+    useEffect(() => {
+        async function fetchProductData() {
+            try {
+                const fetchedProducts = await fetchProducts();
+                setProducts(fetchedProducts);
+            } catch (error) {
+                console.error(error);
+            }
         }
-    },[])
-    return (
-       <ProviderContext.Provider value={}>
-        {children}
-       </ProviderContext.Provider>
-    )
-}
+        fetchProductData();
+    }, []);
 
-export default ProductContext
+    const addAction = useCallback(async (newProduct: Product) => {
+        try {
+            await addProduct(newProduct);
+            setProducts((prevProducts) => [...prevProducts, newProduct]);
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
+    }, []);
+
+    const editAction = useCallback(async (editProduct: Product) => {
+        try {
+            await updateProduct(editProduct.id, editProduct);
+            setProducts((prevProducts) =>
+                prevProducts.map((product) =>
+                    product.id === editProduct.id ? editProduct : product
+                )
+            );
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
+    }, []);
+
+    const deleteAction = useCallback(async (idProduct: string) => {
+        try {
+            await deleteProduct(idProduct);
+            setProducts((prevProducts) => prevProducts.filter((product) => product.id !== idProduct));
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
+    }, []);
+
+    const providerValue: ProviderType = {
+        products,
+        addAction,
+        editAction,
+        deleteAction,
+    };
+
+    return <ProviderContext.Provider value={providerValue}>{children}</ProviderContext.Provider>;
+};
+
+export default ProductContext;
