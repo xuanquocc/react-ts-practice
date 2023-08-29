@@ -1,8 +1,9 @@
 import {useState} from 'react'
+import { useProviderContext } from '../../hooks/useProvider';
   import { Columns } from '../../types/columnsTtype';
   import Table from '../../components/common/Table/Table';
   import Button from '../../components/common/Button/Button';
-  import { useProviderContext } from '../../hooks/useProvider';
+  import Status  from '../../components/common/Status/Status';
   import Modal from '../../components/common/Modal/Modal';
   import { Product } from '../../types/product';
   import './index.css'
@@ -18,6 +19,9 @@ import {useState} from 'react'
       {
         key: "status",
         header: "status",
+        render: (row: Product) => (
+          <Status status={row.status}/>
+        ),
       },
       {
         key: "type",
