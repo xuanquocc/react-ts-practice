@@ -20,7 +20,7 @@ th {
   background-color: #61dafb;
 }
 
-td .child-td.quantity {
+.child-td.quantity {
   border: 1px solid var(--senary-color);
   border-radius: 8px;
   text-align: center;

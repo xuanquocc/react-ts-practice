@@ -5,7 +5,7 @@ interface StatusTagType{
     status: string
 }
 
-function StatusTag ({status}: StatusTagType) {
+const StatusTag =  ({status}: StatusTagType) => {
     return(
         <div className={`${status}`}>
             {status}
