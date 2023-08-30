@@ -2,8 +2,13 @@ import {useState} from 'react'
   import { Columns } from '../../types/columnsTtype';
   import Table from '../../components/common/Table/Table';
   import Button from '../../components/common/Button/Button';
+<<<<<<< Updated upstream
   import { useProviderContext } from '../../hooks/useProvider';
   import Modal from '../../components/common/Modal/Modal';
+=======
+  import Status  from '../../components/common/Status/Status';
+  import AddProductForm from '../../components/common/AddForm/AddForm';
+>>>>>>> Stashed changes
   import { Product } from '../../types/product';
   import './index.css'
 
@@ -46,7 +51,7 @@ import {useState} from 'react'
               <button
                 type="button"
                 
-              >
+              > 
                 delete
               </button>
             </div>
@@ -54,7 +59,12 @@ import {useState} from 'react'
       },
     ];
     const [isOpenModal, setIsOpenModal] = useState(false)
-    const { products } = useProviderContext(); 
+    const { products,addAction, editAction, deleteAction } = useProviderContext(); 
+
+    const handleSubmit = (newProduct: Product) => {
+      // Gửi dữ liệu sản phẩm lên server
+      addAction(newProduct);
+    };
 
     const handleOpenModal = () => {
       setIsOpenModal(true)
@@ -71,7 +81,7 @@ import {useState} from 'react'
           <Button className='button-add' size='large' onClick={handleOpenModal} kind='outline'>
             Add New Product
           </Button>
-          {isOpenModal && (<Modal title='Add new Product' onClose={handleCloseModal}>cc</Modal>)}
+          {isOpenModal && (<AddProductForm onClose={handleCloseModal} onSubmit={handleSubmit}/>)}
         </div>
         <Table columns={columns} data={products} hover stripped></Table>
       </div>
