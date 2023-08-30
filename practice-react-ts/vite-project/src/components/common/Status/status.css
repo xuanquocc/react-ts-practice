@@ -1,0 +1,14 @@
+@import url("../../../App.css");
+.available {
+    border: 1px solid var(--tertiary-color);
+    width: 70%;
+    color: var(--tertiary-color);
+    text-align: center;
+    padding: 4px 0;
+    border-radius: 4px;
+}
+
+.soldout {
+    border: 1px solid var(--quaternary-color);
+    color: var(--quaternary-color);
+}
