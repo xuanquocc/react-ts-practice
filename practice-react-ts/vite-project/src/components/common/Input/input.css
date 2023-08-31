@@ -1,0 +1,15 @@
+.input-wrapper{
+    display: flex;
+    flex-direction: column;
+}
+
+.label{
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.input-cm{
+    border-radius: 8px;
+    padding: 10px 14px;
+}
+
