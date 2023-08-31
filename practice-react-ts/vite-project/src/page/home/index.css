@@ -1,3 +1,4 @@
+@import url("../../App.css");
 .container{
     max-width: 1200px;
     margin: 0 auto;
@@ -9,4 +10,41 @@
     margin-right: 20px  ;
     padding: 10px 20px;
     border-radius: 4px;
+}
+
+.product-wrapper{
+    display: flex;
+    flex-direction: row;
+}
+
+.action-btn{
+    position: relative;
+}
+
+.action-buttons{
+    position: absolute;
+    right: 178px;
+    z-index: 9;
+    border-radius: 8px;
+    width: 97px;
+    height: 84px;
+    gap: 20px;
+    background-color: var(--background-color);
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-btn{
+    margin: 10px 10px 0 10px;
+    flex: 1;
+}
+
+.delete-btn{
+    margin: 0 10px 10px 10px;
+flex: 1;
+}
+
+.link{
+    text-decoration: none;
+    color: var(--secondary-color);
 }

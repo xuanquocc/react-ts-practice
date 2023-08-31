@@ -1,37 +1,41 @@
 @import url("../../../App.css");
-.button {
-    border: none;
-    cursor: pointer;
-    font-weight: bold;
-    /* padding: 10px 20px; */
-    border-radius: 5px;
-  }
-  
-  .primary {
-    background-color: var(--tertiary-color);
-    color: var(--tertiary-color);
-  }
-  
-  .outline {
-    background-color: transparent;
-    border: 2px solid var(--tertiary-color);
-    color: var(--tertiary-color);
-  }
-  
-  .error {
-    background-color: var(--quaternary-color);
-    color: var(--quaternary-color);
-  }
-  
-  .large {
-    font-size: 16px;
-  }
-  
-  .medium {
-    font-size: 12px;
-  }
-  
-  .small {
-    font-size: 10px;
-  }
-  
+button {
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  /* padding: 10px 20px; */
+  border-radius: 8px;
+}
+
+.primary {
+  outline: none;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--tertiary-color);
+  color: var(--primary-color);
+}
+
+.outline {
+  background-color: transparent;
+  border: 2px solid var(--tertiary-color);
+  color: var(--tertiary-color);
+}
+
+.error {
+  border: none;
+  background-color: var(--quaternary-color);
+  border-radius: 8px;
+  color: var(--primary-color);
+}
+
+.large {
+  font-size: 16px;
+}
+
+.medium {
+  font-size: 12px;
+}
+
+.small {
+  font-size: 10px;
+}

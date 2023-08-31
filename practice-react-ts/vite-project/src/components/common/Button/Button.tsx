@@ -7,7 +7,7 @@ interface ButtonProps {
   kind?: "primary" | "outline" | "error";
   className?: string;
   type?: "submit" | "button";
-  onClick: () => void;
+  onClick?: () => void;
 } 
 
 

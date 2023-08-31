@@ -1,0 +1,19 @@
+.wrapper{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.content{
+    display: flex;
+    flex-direction: row;
+    gap: 80px;
+}
+
+form{
+    flex: 2;
+}
+
+.img-detail{
+    width: 380px;
+    height: 380px;
+}

@@ -1,4 +1,4 @@
-import React from "react";
+import React,{memo} from "react";
 import Button from "../Button/Button";
 import { AiOutlineClose } from "react-icons/ai";
 import "./modal.css";
@@ -15,7 +15,7 @@ const Modal = ({ title, onClose, children }: ModalProps) => {
       <div className="overlay"></div>
       <div className="modal-content">
         <div className="header">
-          {title}
+          <h3>{title}</h3>
           <Button className="btn-close" onClick={onClose} size="large">
             <AiOutlineClose />
           </Button>
@@ -26,4 +26,4 @@ const Modal = ({ title, onClose, children }: ModalProps) => {
   );
 };
 
-export default Modal;
+export default memo(Modal);
