@@ -13,6 +13,7 @@ import Image from "../../components/common/Image/Image";
 import Action from "../../assets/dropdownIcon.svg";
 //styles
 import "./index.css";
+import { Link } from "react-router-dom";
 
 function Home() {
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -67,15 +68,27 @@ function Home() {
     setShowDropdownProductId(productId)
   }, [isDropdownOpen]);
 
+  const handleRowClick = useCallback(
+    (productId: string) => {
+      const foundProduct = products.find(
+        (product: Product) => product.id === productId,
+      );
+      setSelectedProduct(foundProduct || null);
+    },
+    [products],
+  );
+
   const columns: Columns[] = [
     {
       key: "name",
       header: "name",
       render: (row: Product) => (
-        <div className="product-wrapper">
+        <Link className="link" to={`/detail/${row.id}`} onClick={() => handleRowClick(row.id)}>
+          <div className="product-wrapper">
           <Image src={row.image} />
           <span className="product-name">{row.name}</span>
         </div>
+        </Link>
       ),
     },
     {
