@@ -19,6 +19,16 @@
       "brand": "Channels",
       "price": "1",
       "image": "https://eropi.com/media/wysiwyg/nhan-3/nhan-bac-channel-perfect_2_.JPG"
+    },
+    {
+      "id": 4,
+      "name": "KimOanh",
+      "status": "available",
+      "type": "ring",
+      "quantity": "1",
+      "brand": "Helmets",
+      "price": "1",
+      "image": "https://cf.shopee.vn/file/c7db377b177fc8e2ff75a769022dcc23"
     }
   ]
 }
