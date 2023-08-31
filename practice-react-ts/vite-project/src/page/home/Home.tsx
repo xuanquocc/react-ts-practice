@@ -1,14 +1,10 @@
 import {useState} from 'react'
+import { useProviderContext } from '../../hooks/useProvider';
   import { Columns } from '../../types/columnsTtype';
   import Table from '../../components/common/Table/Table';
   import Button from '../../components/common/Button/Button';
-<<<<<<< Updated upstream
-  import { useProviderContext } from '../../hooks/useProvider';
-  import Modal from '../../components/common/Modal/Modal';
-=======
   import Status  from '../../components/common/Status/Status';
   import AddProductForm from '../../components/common/AddForm/AddForm';
->>>>>>> Stashed changes
   import { Product } from '../../types/product';
   import './index.css'
 
@@ -23,6 +19,9 @@ import {useState} from 'react'
       {
         key: "status",
         header: "status",
+        render: (row: Product) => (
+          <Status status={row.status}/>
+        ),
       },
       {
         key: "type",

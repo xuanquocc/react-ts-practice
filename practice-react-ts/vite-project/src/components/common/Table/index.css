@@ -1,3 +1,5 @@
+@import url("../../../App.css");
+
 table {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
@@ -16,4 +18,12 @@ th {
 }
 .hover:hover {
   background-color: #61dafb;
+}
+
+.child-td.quantity {
+  border: 1px solid var(--senary-color);
+  border-radius: 8px;
+  text-align: center;
+  width: 57px;
+  padding: 4px;
 }

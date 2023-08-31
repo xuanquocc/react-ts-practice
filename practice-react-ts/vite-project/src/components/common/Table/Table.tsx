@@ -33,11 +33,11 @@ interface TableProps {
             className={`${hover && "hover"} ${stripped && "striped"}`}
           >
              {columns.map((col) => (
-              <td key={col.header}>
-                {col.render ? col.render(row) : (row as any)[col.key]}
+              <td key={col.key} className={col.key}>
+                {col.render ? col.render(row) : (<div className={`child-td ${col.key}`}>{(row as any)[col.key]}</div>)}
               </td>
             ))}
-          </tr>
+          </tr> 
         ))}
       </tbody>
     </table>
