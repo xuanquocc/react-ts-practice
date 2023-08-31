@@ -4,7 +4,7 @@ import { useProviderContext } from '../../hooks/useProvider';
   import Table from '../../components/common/Table/Table';
   import Button from '../../components/common/Button/Button';
   import Status  from '../../components/common/Status/Status';
-  import Modal from '../../components/common/Modal/Modal';
+  import AddProductForm from '../../components/common/AddForm/AddForm';
   import { Product } from '../../types/product';
   import './index.css'
 
@@ -50,7 +50,7 @@ import { useProviderContext } from '../../hooks/useProvider';
               <button
                 type="button"
                 
-              >
+              > 
                 delete
               </button>
             </div>
@@ -58,7 +58,12 @@ import { useProviderContext } from '../../hooks/useProvider';
       },
     ];
     const [isOpenModal, setIsOpenModal] = useState(false)
-    const { products } = useProviderContext(); 
+    const { products,addAction, editAction, deleteAction } = useProviderContext(); 
+
+    const handleSubmit = (newProduct: Product) => {
+      // Gửi dữ liệu sản phẩm lên server
+      addAction(newProduct);
+    };
 
     const handleOpenModal = () => {
       setIsOpenModal(true)
@@ -75,7 +80,7 @@ import { useProviderContext } from '../../hooks/useProvider';
           <Button className='button-add' size='large' onClick={handleOpenModal} kind='outline'>
             Add New Product
           </Button>
-          {isOpenModal && (<Modal title='Add new Product' onClose={handleCloseModal}>cc</Modal>)}
+          {isOpenModal && (<AddProductForm onClose={handleCloseModal} onSubmit={handleSubmit}/>)}
         </div>
         <Table columns={columns} data={products} hover stripped></Table>
       </div>
