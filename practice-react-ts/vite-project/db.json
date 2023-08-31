@@ -8,33 +8,6 @@
       "quantity": "3",
       "brand": "koku",
       "price": "3"
-    },
-    {
-      "id": "sZ5mxI6",
-      "name": "PhonePooptin",
-      "status": "soldout",
-      "type": "ring",
-      "quantity": "1",
-      "brand": "koku",
-      "price": "1"
-    },
-    {
-      "id": "WJaBW__",
-      "name": "KimOanh",
-      "status": "available",
-      "type": "ring",
-      "quantity": "12",
-      "brand": "Win",
-      "price": "21"
-    },
-    {
-      "id": "eQ-MC2H",
-      "name": "Daisuke",
-      "status": "soldout",
-      "type": "ring",
-      "quantity": "1",
-      "brand": "koku",
-      "price": "2"
     }
   ]
 }
