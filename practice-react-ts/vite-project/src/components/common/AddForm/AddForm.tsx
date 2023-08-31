@@ -12,7 +12,11 @@ interface AddProductFormProps {
   initialData?: Product | null;
 }
 
-const AddProductForm = ({ onSubmit, onClose , initialData}: AddProductFormProps) => {
+const AddProductForm = ({
+  onSubmit,
+  onClose,
+  initialData,
+}: AddProductFormProps) => {
   const options: SelectOption[] = [
     { value: "", label: "Select" },
     { value: "available", label: "Available" },
@@ -33,19 +37,20 @@ const AddProductForm = ({ onSubmit, onClose , initialData}: AddProductFormProps)
     quantity: 0,
     brand: "",
     price: 0,
+    image: "",
   });
 
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement|HTMLSelectElement>) => {
+  const handleInputChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = event.target;
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
-    console.log(name,value)
+    console.log(name, value);
   };
 
- 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     onSubmit(formData);
@@ -61,86 +66,99 @@ const AddProductForm = ({ onSubmit, onClose , initialData}: AddProductFormProps)
     }
   }, [initialData]);
 
-  return (
-    (initialData ? <Modal title="Product information" onClose={handleCloseModal}>
-    <form onSubmit={handleSubmit}>
-      <div className="input-name">
-        <Input
-          type="text"
-          name="name"
-          label="Name"
-          value={formData.name}
-          placeholder="Name"
-          onChange={handleInputChange}
-        />
-      </div>
-      <div className="input-quantity">
-        <Input
-          type="number"
-          name="quantity"
-          label="Quantity"
-          value={formData.quantity}
-          placeholder="Quantity"
-          onChange={handleInputChange}
-        />
-      </div>
-      <div className="input-price">
-        <Input
-          type="number"
-          name="price"
-          label="Price"
-          value={formData.price}
-          placeholder="Price"
-          onChange={handleInputChange}
-        />
-      </div>
-      <div className="select">
-        <CustomSelect
-          label="Status"
-          name="status"
-          options={options}
-          value={formData.status}
-          onChange={handleInputChange}
-        />
+  return initialData ? (
+    <Modal title="Product information" onClose={handleCloseModal}>
+      <form onSubmit={handleSubmit}>
+        <div className="input-name">
+          <Input
+            type="text"
+            name="name"
+            label="Product"
+            value={formData.name}
+            placeholder="Name"
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="input-quantity">
+          <Input
+            type="number"
+            name="quantity"
+            label="Quantity"
+            value={formData.quantity}
+            placeholder="Quantity"
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="input-price">
+          <Input
+            type="number"
+            name="price"
+            label="Price"
+            value={formData.price}
+            placeholder="Price"
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="select">
+          <CustomSelect
+            label="Status"
+            name="status"
+            options={options}
+            value={formData.status}
+            onChange={handleInputChange}
+          />
 
-        <CustomSelect
-          label="Type"
-          name="type"
-          options={optionsType}
-          value={formData.type}
-          onChange={handleInputChange}
-        />
-      </div>
-      <div className="input-brand">
-        <Input
-          type="text"
-          name="brand"
-          label="Brand"
-          value={formData.brand}
-          placeholder="Brand"
-          onChange={handleInputChange}
-        />
-      </div>
+          <CustomSelect
+            label="Type"
+            name="type"
+            options={optionsType}
+            value={formData.type}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="input-brand">
+          <Input
+            type="text"
+            name="brand"
+            label="Brand"
+            value={formData.brand}
+            placeholder="Brand"
+            onChange={handleInputChange}
+          />
+        </div>
 
-      <div className="input-action">
-        <Button
-          className="submit-btn"
-          size="medium"
-          kind="primary"
-          onClick={() => handleSubmit}
-        >
-          Submit
-        </Button>
-        <Button
-          className="cancel-btn"
-          size="medium"
-          onClick={handleCloseModal}
-        >
-          Cancel
-        </Button>
-      </div>
-    </form>
-  </Modal> : <Modal title="Add new Product" onClose={handleCloseModal}>
+        <div className="input-image">
+          <Input
+            type="text"
+            name="image"
+            label="Image"
+            value={formData.image}
+            placeholder="Image here"
+            onChange={handleInputChange}
+          />
+        </div>
+
+        <div className="input-action">
+          <Button
+            className="submit-btn"
+            size="medium"
+            kind="primary"
+            onClick={() => handleSubmit}
+          >
+            Submit
+          </Button>
+          <Button
+            className="cancel-btn"
+            size="medium"
+            onClick={handleCloseModal}
+          >
+            Cancel
+          </Button>
+        </div>
+      </form>
+    </Modal>
+  ) : (
+    <Modal title="Add new Product" onClose={handleCloseModal}>
       <form onSubmit={handleSubmit}>
         <div className="input-name">
           <Input
@@ -200,6 +218,17 @@ const AddProductForm = ({ onSubmit, onClose , initialData}: AddProductFormProps)
           />
         </div>
 
+        <div className="input-image">
+          <Input
+            type="text"
+            name="image"
+            label="Image"
+            value={formData.image}
+            placeholder="Image here"
+            onChange={handleInputChange}
+          />
+        </div>
+
         <div className="input-action">
           <Button
             className="submit-btn"
@@ -218,7 +247,7 @@ const AddProductForm = ({ onSubmit, onClose , initialData}: AddProductFormProps)
           </Button>
         </div>
       </form>
-    </Modal>)
+    </Modal>
   );
 };
 

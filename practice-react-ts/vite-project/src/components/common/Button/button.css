@@ -18,14 +18,14 @@ button {
 .outline {
   background-color: transparent;
   border: 2px solid var(--tertiary-color);
-  color: var(--background-color);
+  color: var(--tertiary-color);
 }
 
 .error {
   border: none;
   background-color: var(--quaternary-color);
   border-radius: 8px;
-  color: var(--quaternary-color);
+  color: var(--primary-color);
 }
 
 .large {

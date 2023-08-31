@@ -1,30 +1,41 @@
 import { useState, useCallback } from "react";
-import { useProviderContext } from "../../hooks/useProvider";
+//type
 import { Columns } from "../../types/columnsTtype";
+import { useProviderContext } from "../../hooks/useProvider";
+//component
 import Table from "../../components/common/Table/Table";
 import Button from "../../components/common/Button/Button";
 import Status from "../../components/common/Status/Status";
 import AddProductForm from "../../components/common/AddForm/AddForm";
 import ModalConfirm from "../../components/common/ModalConfirm/ModalCorfirm";
 import { Product } from "../../types/product";
+import Image from "../../components/common/Image/Image";
+import Action from "../../assets/dropdownIcon.svg";
+//styles
 import "./index.css";
 
 function Home() {
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const [isOpenModalConfirm, setIsOpenModalConfirm] = useState(false)
-  const [selectedProduct, setSelectedProduct] = useState<Product|null>(null)
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [showDropdownProductId, setShowDropdownProductId] = useState<string | null>(null);
+  const [isOpenModalConfirm, setIsOpenModalConfirm] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const { products, addAction, editAction, deleteAction } =
     useProviderContext();
 
-  const handleEdit = useCallback((editedProduct: Product) => {
-    setIsOpenModal(true);
-    setSelectedProduct(editedProduct);
-  },[setIsOpenModal,setSelectedProduct]);
+  const handleEdit = useCallback(
+    (editedProduct: Product) => {
+      setIsOpenModal(true);
+      setSelectedProduct(editedProduct);
+      setIsDropdownOpen(false)
+    },
+    [setIsOpenModal, setSelectedProduct]
+  );
 
   const handleCloseModal = useCallback(() => {
     setIsOpenModal(false);
     setSelectedProduct(null);
-  },[setIsOpenModal,setSelectedProduct]);
+  }, [setIsOpenModal, setSelectedProduct]);
 
   const handleDelete = useCallback(() => {
     if (selectedProduct) {
@@ -38,24 +49,34 @@ function Home() {
         editAction({ ...selectedProduct, ...formData });
       } else {
         const newProduct: Product = {
-          ...formData,  
+          ...formData,
         };
         addAction(newProduct);
       }
       handleCloseModal();
     },
-    [addAction, handleCloseModal, selectedProduct, editAction],
+    [addAction, handleCloseModal, selectedProduct, editAction]
   );
 
   const handleOpenModal = useCallback(() => {
     setIsOpenModal(true);
-  },[setIsOpenModal]);
+  }, [setIsOpenModal]);
 
-  
+  const handleDropdownOpen = useCallback((productId:string) => {
+    setIsDropdownOpen(!isDropdownOpen);
+    setShowDropdownProductId(productId)
+  }, [isDropdownOpen]);
+
   const columns: Columns[] = [
     {
       key: "name",
       header: "name",
+      render: (row: Product) => (
+        <div className="product-wrapper">
+          <Image src={row.image} />
+          <span className="product-name">{row.name}</span>
+        </div>
+      ),
     },
     {
       key: "status",
@@ -82,17 +103,32 @@ function Home() {
       key: "action",
       header: "action",
       render: (product: Product) => (
-        <div className="action-buttons">
-          <Button onClick={() => handleEdit(product)}>Edit</Button>
-          <Button onClick={() => {
-            setIsOpenModalConfirm(true)
-            setSelectedProduct(product)
-          }}>Delete</Button>
+        <div className="action">
+          <Button className="action-btn" onClick={() => handleDropdownOpen(product.id)}>
+            <img src={Action} alt="" />
+          </Button>
+
+          {isDropdownOpen &&  showDropdownProductId == product.id && (
+            <div className="action-buttons">
+              <Button className="edit-btn" onClick={() => handleEdit(product)} kind="primary" size="medium">Edit</Button>
+              <Button
+              className="delete-btn"
+                onClick={() => {
+                  setIsOpenModalConfirm(true);
+                  setSelectedProduct(product);
+                  setIsDropdownOpen(false);
+                }}
+                kind="error"
+              >
+                Delete
+              </Button>
+            </div>
+          )}
         </div>
       ),
     },
   ];
-  
+
   return (
     <div className="container">
       <h1>Products Manage</h1>
@@ -106,16 +142,23 @@ function Home() {
           Add New Product
         </Button>
         {isOpenModal && (
-          <AddProductForm onClose={handleCloseModal} onSubmit={handleSubmit} initialData={selectedProduct}/>
+          <AddProductForm
+            onClose={handleCloseModal}
+            onSubmit={handleSubmit}
+            initialData={selectedProduct}
+          />
         )}
-        {
-          isOpenModalConfirm && (
-            <ModalConfirm onClose={() => {setIsOpenModalConfirm(false)}} onConfirm={() => {
+        {isOpenModalConfirm && (
+          <ModalConfirm
+            onClose={() => {
+              setIsOpenModalConfirm(false);
+            }}
+            onConfirm={() => {
               handleDelete();
-              setIsOpenModalConfirm(false)
-            }}/>
-          )
-        }
+              setIsOpenModalConfirm(false);
+            }}
+          />
+        )}
       </div>
       <Table columns={columns} data={products} hover stripped></Table>
     </div>

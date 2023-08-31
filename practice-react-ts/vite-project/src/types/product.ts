@@ -5,7 +5,8 @@ export interface Product {
     type: string,
     quantity: number,
     brand: string,
-    price: number
+    price: number,
+    image:string
 }
 
 

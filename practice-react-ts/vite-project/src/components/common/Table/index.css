@@ -27,3 +27,13 @@ th {
   width: 57px;
   padding: 4px;
 }
+
+.name {
+  width: auto;
+}
+
+.product-name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

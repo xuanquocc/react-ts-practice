@@ -1,13 +1,24 @@
 {
   "products": [
     {
-      "id": "1",
-      "name": "xuan quoc",
+      "id": 2,
+      "name": "PhonePooptin",
       "status": "soldout",
-      "type": "crown",
-      "quantity": "3",
-      "brand": "koku",
-      "price": "3"
+      "type": "ring",
+      "quantity": "1",
+      "brand": "Channels",
+      "price": "3",
+      "image": "https://eropi.com/media/wysiwyg/nhan-3/nhan-bac-channel-perfect_2_.JPG"
+    },
+    {
+      "id": 3,
+      "name": "PhonePooptin",
+      "status": "available",
+      "type": "ring",
+      "quantity": "1",
+      "brand": "Channels",
+      "price": "1",
+      "image": "https://eropi.com/media/wysiwyg/nhan-3/nhan-bac-channel-perfect_2_.JPG"
     }
   ]
 }
