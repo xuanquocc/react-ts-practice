@@ -16,7 +16,7 @@ const ProductDetailPage: React.FC = () => {
   const { products } = useProviderContext();
 
   const selectedProduct = products.find(
-    (product) => product.id === productId,
+    (product) => product.id.toString() === productId,
   );
 
  

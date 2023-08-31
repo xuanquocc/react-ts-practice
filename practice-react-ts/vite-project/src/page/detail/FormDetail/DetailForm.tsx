@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Button from "../../../components/common/Button/Button";
 import Input from "../../../components/common/Input/Input";
 import { Product } from "../../../types/product";
-import './detailForm.css';
+import './detailForm.css'
 
 import {
   CustomSelect,
@@ -18,6 +18,7 @@ interface DetailFormProps {
 const DetailForm: FC<DetailFormProps> = ({ product, onBack }) => {
   const [formData, setFormData] = useState<Product>(product);
 
+  console.log(product)
   const options: SelectOption[] = [
     { value: "", label: "Select" },
     { value: "available", label: "Available" },
