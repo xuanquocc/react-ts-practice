@@ -15,7 +15,7 @@ const Modal = ({ title, onClose, children }: ModalProps) => {
       <div className="overlay"></div>
       <div className="modal-content">
         <div className="header">
-          {title}
+          <h3>{title}</h3>
           <Button className="btn-close" onClick={onClose} size="large">
             <AiOutlineClose />
           </Button>

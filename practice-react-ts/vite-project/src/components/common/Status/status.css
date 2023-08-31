@@ -10,5 +10,9 @@
 
 .soldout {
     border: 1px solid var(--quaternary-color);
+    width: 70%;
+    text-align: center;
+    padding: 4px 0;
+    border-radius: 4px;
     color: var(--quaternary-color);
 }
