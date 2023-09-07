@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Button from "../../../components/common/Button/Button";
 import Input from "../../../components/common/Input/Input";
 import { Product } from "../../../types/product";
-import './detailForm.css'
+import "./detailForm.css";
 
 import {
   CustomSelect,
@@ -18,7 +18,7 @@ interface DetailFormProps {
 const DetailForm: FC<DetailFormProps> = ({ product, onBack }) => {
   const [formData, setFormData] = useState<Product>(product);
 
-  console.log(product)
+  console.log(product);
   const options: SelectOption[] = [
     { value: "", label: "Select" },
     { value: "available", label: "Available" },
@@ -97,30 +97,32 @@ const DetailForm: FC<DetailFormProps> = ({ product, onBack }) => {
               }}
             />
           </div>
-          <div className="input-brand">
-            <Input
-              type="text"
-              name="brand"
-              label="Brand"
-              value={formData.brand}
-              placeholder="Brand"
-              onChange={(e) => {
-                setFormData({ ...formData, name: e.target.value });
-              }}
-            />
-          </div>
+          <div className="brand-image">
+            <div className="input-brand">
+              <Input
+                type="text"
+                name="brand"
+                label="Brand"
+                value={formData.brand}
+                placeholder="Brand"
+                onChange={(e) => {
+                  setFormData({ ...formData, name: e.target.value });
+                }}
+              />
+            </div>
 
-          <div className="input-image">
-            <Input
-              type="text"
-              name="image"
-              label="Image"
-              value={formData.image}
-              placeholder="Image here"
-              onChange={(e) => {
-                setFormData({ ...formData, name: e.target.value });
-              }}
-            />
+            <div className="input-image">
+              <Input
+                type="text"
+                name="image"
+                label="Image"
+                value={formData.image}
+                placeholder="Image here"
+                onChange={(e) => {
+                  setFormData({ ...formData, name: e.target.value });
+                }}
+              />
+            </div>
           </div>
 
           <div className="input-action">

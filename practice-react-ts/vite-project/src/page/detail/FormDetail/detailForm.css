@@ -1,6 +1,6 @@
 .wrapper{
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 932px;
+    margin: 100px auto ;
 }
 
 .content{
@@ -16,4 +16,20 @@ form{
 .img-detail{
     width: 380px;
     height: 380px;
+}
+
+.brand-image{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.input-brand{
+    flex: 1;
+    width: 20%;
+}
+
+.input-image{
+    flex: 1;
+    width: 20%;
 }
