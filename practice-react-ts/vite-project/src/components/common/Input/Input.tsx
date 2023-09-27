@@ -4,11 +4,11 @@ import "./input.css";
 
 interface InputProps {
   type: "text" | "number" | "email" | "password";
-  label: string;
+  label?: string;
   value: string | number;
   name: string;
   placeholder?: string;
-  error?: boolean;
+  error?: string;
   disabled?: boolean;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
@@ -25,7 +25,7 @@ const Input: FC<InputProps> = ({
 }) => {
   return (
     <div className="input-wrapper">
-      <label className="label" htmlFor={label}>{label}</label>
+      {label && <label className="label" htmlFor={label}>{label}</label>}
       <input
         className="input-cm"
         type={type}
