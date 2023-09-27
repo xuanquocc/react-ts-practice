@@ -34,7 +34,7 @@ interface TableProps {
           >
              {columns.map((col) => (
               <td key={col.key} className={col.key}>
-                {col.render ? col.render(row) : (<div className={`child-td ${col.key}`}>{(row as any)[col.key]}</div>)}
+                {col.render ? col.render(row) : (<div className={`child-td ${col.key}`}>{(row)[col.key as keyof typeof row]}</div>)}
               </td>
             ))}
           </tr> 

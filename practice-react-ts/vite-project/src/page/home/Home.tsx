@@ -15,6 +15,7 @@ import Action from "../../assets/dropdownIcon.svg";
 import "./index.css";
 import { Link } from "react-router-dom";
 
+
 function Home() {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);

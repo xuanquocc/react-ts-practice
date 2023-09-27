@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Manage</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./styles/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row justify-content-between align-items-center">
+                    <div class="col-md-6">
+                        <h1>Manage <b>Product</b></h1>
+                    </div>
+                    <div class="col-md-6 d-flex justify-content-end gap-10">
+                        <button type="button" class="btn btn-success" id="btnAddNewProduct">
+                            Add New Product
+                        </button>
+                        <button type="button" class="btn btn-primary" id="loginBtn">
+                            Login
+                        </button>
+                        <button type="button" class="btn btn-primary" id="registerBtn">
+                            Register
+                        </button>
+                        <button type="button" class="btn btn-primary" id="logoutBtn">
+                            Logout
+                        </button>
+                    </div>
+
+
+                </div>
+            </div>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>image</th>
+                        <th>product name</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th class="table-action">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="modal fade" id="registerModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h5 class="modal-title w-100 font-weight-bold">Register</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="" class="form-register" name="register">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input name="username" class="form-control" type="text" placeholder="Please enter username">
+                            <small></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input name="password" class="form-control" type="password"
+                                placeholder="Please enter password">
+                            <small></small>
+                        </div>
+                        <div class="form-field">
+                            <input type="submit" value="Register" name="register">
+                        </div>
+                        <div class="form-group">
+                            <small class="status-username"></small>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="login">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h5 class="modal-title w-100 font-weight-bold">Login</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="" class="form-login" name="login">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input name="username" class="form-control" type="text" placeholder="Please enter username">
+                            <small></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input name="password" class="form-control" type="password"
+                                placeholder="Please enter password">
+                            <small></small>
+                        </div>
+                        <div class="form-field">
+                            <input type="submit" value="Login" name="login">
+                        </div>
+                        <div class="form-group">
+                            <small class="status-login"></small>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="productModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="" class="product-form" name="product-form" id="edit">
+                        <div class="form-group">
+                            <label for="productImage">Image</label>
+                            <input name="productImage" class="form-control" type="text"
+                                placeholder="Please enter product image URL">
+                            <small></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="productName">Name</label>
+                            <input name="productName" class="form-control" type="text"
+                                placeholder="Please enter product name">
+                            <small></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="productQuantity">Quantity</label>
+                            <input name="productQuantity" class="form-control" type="text"
+                                placeholder="Please enter product quantity">
+                            <small></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="productPrice">Price</label>
+                            <input name="productPrice" class="form-control" type="text"
+                                placeholder="Please enter product price">
+                            <small></small>
+                        </div>
+                        <div>
+                            <input type="submit" value="Submit">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteProduct">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Delete Product</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure delete this product?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger delete-btn">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="./js/apps/product.app.js"></script>
+    <script type="module" src="./js/apps/auth.app.js"></script>
+</body>
+
+</html>
