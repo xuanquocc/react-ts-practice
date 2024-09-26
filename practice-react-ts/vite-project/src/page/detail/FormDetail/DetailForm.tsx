@@ -18,7 +18,6 @@ interface DetailFormProps {
 const DetailForm: FC<DetailFormProps> = ({ product, onBack }) => {
   const [formData, setFormData] = useState<Product>(product);
 
-  console.log(product);
   const options: SelectOption[] = [
     { value: "", label: "Select" },
     { value: "available", label: "Available" },

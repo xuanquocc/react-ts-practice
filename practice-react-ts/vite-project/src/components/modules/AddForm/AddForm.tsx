@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./addForm.css";
 import { Product } from "../../../types/product";
-import Modal from "../Modal/Modal";
-import Input from "../Input/Input";
-import { SelectOption, CustomSelect } from "../SelectBox/SelectBox";
-import Button from "../Button/Button";
+import Modal from "../../common/Modal/Modal";
+import Input from "../../common/Input/Input";
+import { Errors, validator } from "../../../utils/validater";
+import { SelectOption, CustomSelect } from "../../common/SelectBox/SelectBox";
+import Button from "../../common/Button/Button";
 
 interface AddProductFormProps {
   onSubmit: (newProduct: Product) => void;
@@ -40,6 +41,17 @@ const AddProductForm = ({
     image: "",
   });
 
+  const [errorMessages, setErrorMessages] = useState<Errors>({
+    id: "",
+    name: "",
+    status: "",
+    type: "",
+    quantity: "",
+    brand: "",
+    price: "",
+    image: "",
+  });
+
   const handleInputChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -51,11 +63,30 @@ const AddProductForm = ({
     console.log(name, value);
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    onSubmit(formData);
-  };
-
+  const handleSubmit = useCallback(
+    (event: React.FormEvent) => {
+      event.preventDefault();
+      const errors = validator({
+        isRequired: [
+          { key: "name", value: formData.name },
+          { key: "status", value: formData.status },
+          { key: "type", value: formData.type },
+          { key: "quantity", value: formData.quantity },
+          { key: "price", value: formData.price },
+          { key: "brand", value: formData.brand },
+          { key: "image", value: formData.image },
+        ],
+      });
+      setErrorMessages(errors.errors);
+      console.log(errorMessages.name)
+      if (errors.valid) {
+        onSubmit({...formData});
+      }
+    },
+    [formData, onSubmit]
+  );
+  
+  
   const handleCloseModal = () => {
     onClose();
   };
@@ -72,6 +103,7 @@ const AddProductForm = ({
         <div className="input-name">
           <Input
             type="text"
+            error={errorMessages.name}
             name="name"
             label="Product"
             value={formData.name}
@@ -84,6 +116,7 @@ const AddProductForm = ({
             type="number"
             name="quantity"
             label="Quantity"
+            error={errorMessages.quantity}
             value={formData.quantity}
             placeholder="Quantity"
             onChange={handleInputChange}
@@ -93,6 +126,7 @@ const AddProductForm = ({
           <Input
             type="number"
             name="price"
+            error={errorMessages.price}
             label="Price"
             value={formData.price}
             placeholder="Price"
@@ -116,27 +150,35 @@ const AddProductForm = ({
             onChange={handleInputChange}
           />
         </div>
-        <div className="input-brand">
-          <Input
-            type="text"
-            name="brand"
-            label="Brand"
-            value={formData.brand}
-            placeholder="Brand"
-            onChange={handleInputChange}
-          />
-        </div>
+        <div className="brand-image">
+            <div className="input-brand">
+              <Input
+                type="text"
+                name="brand"
+                error={errorMessages.brand}
+                label="Brand"
+                value={formData.brand}
+                placeholder="Brand"
+                onChange={(e) => {
+                  setFormData({ ...formData, name: e.target.value });
+                }}
+              />
+            </div>
 
-        <div className="input-image">
-          <Input
-            type="text"
-            name="image"
-            label="Image"
-            value={formData.image}
-            placeholder="Image here"
-            onChange={handleInputChange}
-          />
-        </div>
+            <div className="input-image">
+              <Input
+                type="text"
+                error={errorMessages.image}
+                name="image"
+                label="Image"
+                value={formData.image}
+                placeholder="Image here"
+                onChange={(e) => {
+                  setFormData({ ...formData, name: e.target.value });
+                }}
+              />
+            </div>
+          </div>
 
         <div className="input-action">
           <Button
@@ -164,6 +206,7 @@ const AddProductForm = ({
           <Input
             type="text"
             name="name"
+            error={errorMessages.name}
             label="Name"
             value={formData.name}
             placeholder="Name"
@@ -174,6 +217,7 @@ const AddProductForm = ({
           <Input
             type="number"
             name="quantity"
+            error={errorMessages.quantity}
             label="Quantity"
             value={formData.quantity}
             placeholder="Quantity"
@@ -184,6 +228,7 @@ const AddProductForm = ({
           <Input
             type="number"
             name="price"
+            error={errorMessages.price}
             label="Price"
             value={formData.price}
             placeholder="Price"
@@ -207,27 +252,35 @@ const AddProductForm = ({
             onChange={handleInputChange}
           />
         </div>
-        <div className="input-brand">
-          <Input
-            type="text"
-            name="brand"
-            label="Brand"
-            value={formData.brand}
-            placeholder="Brand"
-            onChange={handleInputChange}
-          />
-        </div>
+        <div className="brand-image">
+            <div className="input-brand">
+              <Input
+                type="text"
+                name="brand"
+                error={errorMessages.brand}
+                label="Brand"
+                value={formData.brand}
+                placeholder="Brand"
+                onChange={(e) => {
+                  setFormData({ ...formData, name: e.target.value });
+                }}
+              />
+            </div>
 
-        <div className="input-image">
-          <Input
-            type="text"
-            name="image"
-            label="Image"
-            value={formData.image}
-            placeholder="Image here"
-            onChange={handleInputChange}
-          />
-        </div>
+            <div className="input-image">
+              <Input
+                type="text"
+                name="image"
+                label="Image"
+                error={errorMessages.image}
+                value={formData.image}
+                placeholder="Image here"
+                onChange={(e) => {
+                  setFormData({ ...formData, name: e.target.value });
+                }}
+              />
+            </div>
+          </div>
 
         <div className="input-action">
           <Button

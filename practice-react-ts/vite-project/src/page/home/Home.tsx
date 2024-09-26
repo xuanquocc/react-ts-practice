@@ -6,7 +6,7 @@ import { useProviderContext } from "../../hooks/useProvider";
 import Table from "../../components/common/Table/Table";
 import Button from "../../components/common/Button/Button";
 import Status from "../../components/common/Status/Status";
-import AddProductForm from "../../components/common/AddForm/AddForm";
+import AddProductForm from "../../components/modules/AddForm/AddForm";
 import ModalConfirm from "../../components/common/ModalConfirm/ModalCorfirm";
 import { Product } from "../../types/product";
 import Image from "../../components/common/Image/Image";
